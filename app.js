@@ -15,6 +15,9 @@ const http = require('http');
 // db.once('open', () => {
 //     console.log('conexion exitosa');
 // });
+
+
+
 /* Creates new HTTP server for socket */ 
 var socketServer = require('http').createServer(app); 
 var io = require('socket.io')(socketServer, {
@@ -23,7 +26,7 @@ var io = require('socket.io')(socketServer, {
         methods: ["GET", "POST"]
     }
 });
-socketServer.listen(3002, function(){ 
+socketServer.listen(process.env.PORT || 3000, function(){ 
     console.log('Socket server listening on : 3002'); 
 });
 io.on('connection', function(socket){
@@ -38,8 +41,6 @@ io.on('connection', function(socket){
     })
 });
 
-var server = http.createServer(app);
-server.listen( process.env.PORT || 3000);
 // //router
 // const authRouter = require('./routes/auth/auth');
 // const actionsRouter = require('./routes/actions');

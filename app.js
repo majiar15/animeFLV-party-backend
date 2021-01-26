@@ -34,11 +34,12 @@ io.on('connection', function(socket){
     
     socket.on("play", ()=>{
         console.log("play");
-        
-        
-        io.sockets.emit('play-server')
-        
-    })
+        io.sockets.emit('play-server') 
+    });
+    socket.on("pause", ()=>{
+        console.log("pause");
+        io.sockets.emit('pause-server')
+    });
 });
 
 // //router

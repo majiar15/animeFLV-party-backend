@@ -34,7 +34,7 @@ io.on('connection', function(socket){
     
     socket.on("play", ()=>{
         console.log("play");
-        socket.broadcast.emit('pause-server')
+        socket.broadcast.emit('play-server')
         // io.sockets.emit('play-server') 
     });
     socket.on("pause", ()=>{

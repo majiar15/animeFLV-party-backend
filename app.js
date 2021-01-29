@@ -42,6 +42,11 @@ io.on('connection', function(socket){
         socket.broadcast.emit('pause-server')
         // io.sockets.emit('pause-server')
     });
+    socket.on("sendMessage", (data)=>{
+        console.log(data);
+        socket.broadcast.emit('message-received', {data})
+        // io.sockets.emit('pause-server')
+    });
 });
 
 // //router

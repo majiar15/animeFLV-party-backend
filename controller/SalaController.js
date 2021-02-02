@@ -13,18 +13,40 @@ exports.crear = function(req, res) {
        condition = verifyCode(code);      
                    
     }
-    
-    salaModel.create({codigo: code, participantes: 1})
-        .then(function(collection) {
+    // console.log(req.body);
+    // salaModel.create({codigo: code, url: req.body.url, participantes: 1})
+    //     .then(function(collection) {
+    //         res.status(200).json({codigo:code})
+    //         console.log('Collection is created! ');
+    //     })
+    //     .catch(function(error) {
+    //         res.status(400).send("error ", error)
+    //         console.log('Collection is error! ',error);
+    //     });
             res.status(200).json({codigo:code})
-            console.log('Collection is created! ');
+
+
+}
+exports.entrar = function (req, res) {
+    let codigo = req.body.codigo;
+    console.log(codigo);
+    salaModel.findOne({codigo: codigo})
+        .then((colection) =>{
+            console.log(colection);
+            if(colection){
+                res.status(200).json(colection)
+                console.log("se encontro");
+            }else{
+                res.status(400).json(colection)
+                console.log("no hay ningun registro que coincida");
+            }
+            
         })
-        .catch(function(error) {
+        .catch((error)=>{
             res.status(400).send("error ", error)
-            console.log('Collection is error! ',error);
+            console.log("no se encontro");
         });
-
-
+    
 }
 
 function verifyCode(code) {

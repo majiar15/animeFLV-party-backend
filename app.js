@@ -1,13 +1,13 @@
+require('dotenv').config();
 const express = require("express");
 let app = express();
-const http = require('http');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 var socketServer = require('http').createServer(app); 
-
+const mongoDBUri = process.env.MONGO_URI;
 // configuracion de base de datos
 mongoose.set('useCreateIndex', true)
-mongoose.connect('mongodb://localhost:27017/anime-party', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDBUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', err => {

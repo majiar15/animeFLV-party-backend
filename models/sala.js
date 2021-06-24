@@ -4,6 +4,7 @@ let salaSchema = new Schema({
     codigo: String,
     url: String,
     participantes: Number
+
 });
 
 

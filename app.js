@@ -2,20 +2,20 @@ const express = require("express");
 let app = express();
 const http = require('http');
 const bodyParser = require("body-parser");
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 var socketServer = require('http').createServer(app); 
 
 // configuracion de base de datos
-// mongoose.set('useCreateIndex', true)
-// mongoose.connect('mongodb://localhost:27017/anime-party', { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.Promise = global.Promise;
-// const db = mongoose.connection;
-// db.on('error', err => {
-//     console.log("conexion error ", err);
-// });
-// db.once('open', () => {
-//     console.log('conexion exitosa');
-// });
+mongoose.set('useCreateIndex', true)
+mongoose.connect('mongodb://localhost:27017/anime-party', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', err => {
+    console.log("conexion error ", err);
+});
+db.once('open', () => {
+    console.log('conexion exitosa');
+});
 
 
 
@@ -27,7 +27,7 @@ var io = require('socket.io')(socketServer, {
     }
 });
 socketServer.listen(process.env.PORT || 3000, function(){ 
-    console.log('Socket server listening on : 3002'); 
+    console.log('Socket server listening on : 3000'); 
 });
 io.on('connection', function(socket){
     console.log('Socket connection ', socket.id);

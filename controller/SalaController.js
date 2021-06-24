@@ -1,8 +1,8 @@
 const salaModel = require('../models/sala');
+
 exports.crear = function(req, res) {
     let ArrayLetters = ['a','b','c','d','f','g','h','i','j','k','l','ñ','n','m','o','p','q','r','s','t','u','v','w','x','y','z'];
     let code;
-    
     condition = true;
     while (condition) {
         code = '';
@@ -13,17 +13,20 @@ exports.crear = function(req, res) {
        condition = verifyCode(code);      
                    
     }
-    // console.log(req.body);
-    // salaModel.create({codigo: code, url: req.body.url, participantes: 1})
-    //     .then(function(collection) {
-    //         res.status(200).json({codigo:code})
-    //         console.log('Collection is created! ');
-    //     })
-    //     .catch(function(error) {
-    //         res.status(400).send("error ", error)
-    //         console.log('Collection is error! ',error);
-    //     });
+
+    console.log(req.body.url);
+    console.log(code);
+
+    salaModel.create({codigo: code, url: req.body.url, participantes: 1})
+        .then(function(collection) {
+            console.log('Collection is created! ');
             res.status(200).json({codigo:code})
+        })
+        .catch(function(error) {
+            console.log('Collection is error! ',error);
+            res.status(400).json(error)
+        });
+            // res.status(200).json({codigo:code})
 
 
 }
